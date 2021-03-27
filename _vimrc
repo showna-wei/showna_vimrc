@@ -42,14 +42,15 @@ function MyDiff()
   endif
 endfunction
 "######################################################################################################
-"²Ù¿ØÅäÖÃ
+"æ“æ§é…ç½®
 "######################################################################################################
 "self map setting
 let mapleader = " "
 inoremap jj <Esc>
+nmap <CR> o<Esc>
 vmap <leader><leader>y "+y
 map <leader><leader>p "+gP
-"ÓÃ<c-r>¼ÓÉÏ¼Ä´æÆ÷Ãû×ÖÀ´ÔÚÃüÁîĞĞğ¤Ìù¼Ä´æÆ÷ÄÚÈİ
+"ç”¨<c-r>åŠ ä¸Šå¯„å­˜å™¨åå­—æ¥åœ¨å‘½ä»¤è¡Œé»è´´å¯„å­˜å™¨å†…å®¹
 cmap <leader><leader>p <C-r>+
 inoremap <C-o> <Esc>o  
 inoremap <C-l> <Right>
@@ -60,7 +61,7 @@ inoremap <C-b> <PageUp>
 inoremap <C-f> <PageDown>
 "set tab space
 set ts=4
-"Ê¹ÓÃ>><<£¬ÒÔ¼°=ºÅ×Ô¶¯Ëõ½øÊ±µÄËõ½ø¿Õ¸ñ
+"ä½¿ç”¨>><<ï¼Œä»¥åŠ=å·è‡ªåŠ¨ç¼©è¿›æ—¶çš„ç¼©è¿›ç©ºæ ¼
 set shiftwidth=4
 set expandtab
 set nu
@@ -68,10 +69,12 @@ set nu
 set hlsearch
 "ignore case in search
 set ic
-"Èç¹ûËÑË÷Ê±³öÏÖ´óĞ´£¬¾Í²»ºöÂÔ´óĞ¡Ğ´
+"å¦‚æœæœç´¢æ—¶å‡ºç°å¤§å†™ï¼Œå°±ä¸å¿½ç•¥å¤§å°å†™
 set smartcase
+"å¯ç”¨256è‰²"
+set t_Co=256
 set autoread
-"ÉèÖÃ±¸·İÎÄ¼ş¡¢½»»»ÎÄ¼ş¡¢²Ù×÷ÀúÊ·ÎÄ¼şµÄ±£´æÎ»ÖÃ¡£
+"è®¾ç½®å¤‡ä»½æ–‡ä»¶ã€äº¤æ¢æ–‡ä»¶ã€æ“ä½œå†å²æ–‡ä»¶çš„ä¿å­˜ä½ç½®ã€‚
 set backupdir=$VIM/.vimtemp/.backup//  
 set directory=$VIM/.vimtemp/.swp//
 set undodir=$VIM/.vimtemp/.undo//
@@ -80,7 +83,7 @@ syntax enable
 set background=light
 colorscheme solarized
 "######################################################################################################
-"ĞŞ¸Äºó×Ô¶¯ÖØÔØvimrc
+"ä¿®æ”¹åè‡ªåŠ¨é‡è½½vimrc
 augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
@@ -108,7 +111,7 @@ augroup END
 "~autocmd InsertLeave * call Fcitx2en()
 "~autocmd InsertEnter * call Fcitx2zh()
 "~
-"²å¼ş¹ÜÀí######################################################################################################
+"æ’ä»¶ç®¡ç†######################################################################################################
 "use git proto insead of https,no ssl error
 let g:vundle_default_git_proto = 'git'
 
@@ -131,6 +134,8 @@ Plugin 'Yggdroot/LeaderF'
 Plugin 'gtags.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'preservim/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'jszakmeister/markdown2ctags'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -161,19 +166,19 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"ÉèÖÃLeadf²å¼ş£¬ÎÄ¼ş´ò¿ªÏà¹ØÄÚÈİ¡£By showna
+"è®¾ç½®Leadfæ’ä»¶ï¼Œæ–‡ä»¶æ‰“å¼€ç›¸å…³å†…å®¹ã€‚By showna
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"ÉèÎªµ±Ç°¹¤×÷¿Õ¼äËæ´ò¿ªÎÄ¼ş¸Ä±ä
+"è®¾ä¸ºå½“å‰å·¥ä½œç©ºé—´éšæ‰“å¼€æ–‡ä»¶æ”¹å˜
 autocmd BufEnter * silent! lcd %:p:h
 "autocmd BufEnter * cd %:p:h
-"ÉèÖÃ´ò¿ª×î½üÎÄ¼ş¿ì½İ¼ü
+"è®¾ç½®æ‰“å¼€æœ€è¿‘æ–‡ä»¶å¿«æ·é”®
 nnoremap <Leader>mru :Leaderf mru<CR>
 nnoremap <Leader>fl :Leaderf line<CR>
 "nnoremap <Leader>ff :Leaderf file<CR>
 let g:Lf_ShortcutF = '<Leader>ff'
 
 ""autocmd BufEnter * finddir('.git/..', expand('%:p:h').';')
-"let g:Lf_WorkingDirectory= ["D:/python_code" , "D:/ÎÒµÄ¼á¹ûÔÆ"]
+"let g:Lf_WorkingDirectory= ["D:/python_code" , "D:/æˆ‘çš„åšæœäº‘"]
 "let g:Lf_WorkingDirectory= "D:/python_code"
 "let g:Lf_CacheDirectory = "D:/python_code"
 "''''''''''''''''''''''''''''  
@@ -181,21 +186,56 @@ let g:Lf_ShortcutF = '<Leader>ff'
 "auto open
 "autocmd vimenter * NERDTree
 map <leader>nt :NERDTree<CR>
-"q ÍË³ö
+"q é€€å‡º
 map <leader>ntt :NERDTreeToggle<CR>
+"ctags seeting
+"ç”Ÿæˆctagsæ–‡ä»¶
+map <Leader>ct :!ctags -R * <CR>
+"è‡ªåŠ¨åˆ‡æ¢ç›®å½•å¹¶æŒ‡å®štagæ–‡ä»¶
+set tags=tags;
+"set autochdir
+
+map <Leader>tbo :TagbarOpen<CR>
+map <Leader>tbt :TagbarToggle<CR>
+map <Leader>tt :TagbarOpen -j<CR>
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '$VIM/vimfiles/bundle/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes --sro=Â»',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : 'Â»',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim7.1ÔÚwindowsÏÂµÄ±àÂëÉèÖÃ¡£By Huadong.Liu
+" vim7.1åœ¨windowsä¸‹çš„ç¼–ç è®¾ç½®ã€‚By Huadong.Liu
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set encoding=utf-8
 set fileencodings=utf-8,chinese,latin-1
 if has("win32")
-        set fileencoding=chinese
+        "set fileencoding=chinese,utf-8
 else
         set fileencoding=utf-8
 endif
-"½â¾ö²Ëµ¥ÂÒÂë
+"è§£å†³èœå•ä¹±ç 
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-"½â¾öconsleÊä³öÂÒÂë
+"è§£å†³consleè¾“å‡ºä¹±ç 
 language messages zh_CN.utf-8
-
+"######################################################################################################
+"win10 é… ç½®
+let $mymddir="D:/æˆ‘çš„åšæœäº‘/mdæ–‡ä»¶"
+map <leader>nmy :NERDTree $mymddir<CR>
+"ä¿®æ”¹åï¼Œåœ¨typoraåŒæ­¥è½½å…¥æ–‡ä»¶
+function TyporaLaunch()
+    " Launch Typora
+    exec !"D:/Program Files/Typora/bin/typora.exe" "%:p"
+    "call system("D:/Program Files/Typora/bin/typora.exe" . expand("%") . "\"")
+    "setlocal autoread
+endfunction
+autocmd BufWritePost *.md :call TyporaLaunch()
