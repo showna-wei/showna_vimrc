@@ -70,7 +70,12 @@ set hlsearch
 set ic
 "如果搜索时出现大写，就不忽略大小写
 set smartcase
-
+set autoread
+"设置备份文件、交换文件、操作历史文件的保存位置。
+set backupdir=$VIM/.vimtemp/.backup//  
+set directory=$VIM/.vimtemp/.swp//
+set undodir=$VIM/.vimtemp/.undo//
+"setting scheme
 syntax enable
 set background=light
 colorscheme solarized
@@ -173,8 +178,11 @@ let g:Lf_ShortcutF = '<Leader>ff'
 "let g:Lf_CacheDirectory = "D:/python_code"
 "''''''''''''''''''''''''''''  
 "nerdtree setting
-"add link
-
+"auto open
+"autocmd vimenter * NERDTree
+map <leader>nt :NERDTree<CR>
+"q 退出
+map <leader>ntt :NERDTreeToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim7.1在windows下的编码设置。By Huadong.Liu
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
