@@ -173,6 +173,7 @@ let g:Lf_ShortcutF = '<Leader>ff'
 "let g:Lf_CacheDirectory = "D:/python_code"
 "''''''''''''''''''''''''''''  
 "nerdtree setting
+"add link
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim7.1在windows下的编码设置。By Huadong.Liu
