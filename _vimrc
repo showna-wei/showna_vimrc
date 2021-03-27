@@ -104,6 +104,8 @@ augroup END
 "~autocmd InsertEnter * call Fcitx2zh()
 "~
 "插件管理######################################################################################################
+"use git proto insead of https,no ssl error
+let g:vundle_default_git_proto = 'git'
 
 " set the runtime path to include Vundle and initialize
 set rtp+=$VIM/vimfiles/bundle/Vundle.vim
@@ -169,6 +171,8 @@ let g:Lf_ShortcutF = '<Leader>ff'
 "let g:Lf_WorkingDirectory= ["D:/python_code" , "D:/我的坚果云"]
 "let g:Lf_WorkingDirectory= "D:/python_code"
 "let g:Lf_CacheDirectory = "D:/python_code"
+"''''''''''''''''''''''''''''  
+"nerdtree setting
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim7.1在windows下的编码设置。By Huadong.Liu
