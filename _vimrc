@@ -86,7 +86,7 @@ colorscheme solarized
 "修改后自动重载vimrc
 augroup myvimrc
     au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC "| if has('gui_running') | so $MYGVIMRC | endif
 augroup END
 "######################################################################################################
 "auto select input keyboard
@@ -136,6 +136,8 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'preservim/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'jszakmeister/markdown2ctags'
+Plugin 'gabrielelana/vim-markdown'
+"Plugin 'liuchengxu/vista.vim'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -194,10 +196,13 @@ map <Leader>ct :!ctags -R * <CR>
 "自动切换目录并指定tag文件
 set tags=tags;
 "set autochdir
-
+map <Leader>vv :Vista focus <CR>
+map <Leader>vo :Vista <CR>
+map <Leader>vm :Vista toc<CR>
 map <Leader>tbo :TagbarOpen<CR>
 map <Leader>tbt :TagbarToggle<CR>
-map <Leader>tt :TagbarOpen -j<CR>
+map <Leader>tt :TagbarOpen -fj<CR>
+autocmd VimEnter * nested :call tagbar#autoopen(1)
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
     \ 'ctagsbin' : '$VIM/vimfiles/bundle/markdown2ctags/markdown2ctags.py',
@@ -212,6 +217,14 @@ let g:tagbar_type_markdown = {
     \ },
     \ 'sort': 0,
 \ }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" markdown 快捷配置
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd Filetype markdown inoremap <buffer> <silent> ;1 #<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> <silent> ;2 ##<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> <silent> ;3 ###<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap <buffer> <silent> ;4 ####<Space><Enter><++><Esc>kA
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim7.1在windows下的编码设置。By Huadong.Liu
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -232,10 +245,18 @@ language messages zh_CN.utf-8
 let $mymddir="D:/我的坚果云/md文件"
 map <leader>nmy :NERDTree $mymddir<CR>
 "修改后，在typora同步载入文件
-function TyporaLaunch()
-    " Launch Typora
-    exec !"D:/Program Files/Typora/bin/typora.exe" "%:p"
-    "call system("D:/Program Files/Typora/bin/typora.exe" . expand("%") . "\"")
-    "setlocal autoread
-endfunction
-autocmd BufWritePost *.md :call TyporaLaunch()
+"'不一定执行，似乎不用，typora都会自动载入有更改的内容
+"function TyporaLaunch()
+"    " Launch Typora
+"    exec !"D:/Program Files/Typora/bin/typora.exe" . expand{ "%:p"}
+"    "call system("D:/Program Files/Typora/bin/typora.exe" . expand("%") . "\"")
+"    "setlocal autoread
+"endfunction
+"augroup mymd
+"    au!
+"    "au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+"    autocmd BufWritePost *.md :call TyporaLaunch()
+"augroup END
+" 切换搜狗输入法中文
+inoremap soug <C-,><S>
+
